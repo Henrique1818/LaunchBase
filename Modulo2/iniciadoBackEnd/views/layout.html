@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        {% block head %}
+            <title>Henrique</title>
+        {% endblock %}
+        
+        <link rel="stylesheet" href="/styles.css">
+        
+    </head>
+    <body>
+        <header>
+            <div class="links">
+                <a href="/">Sobre</a>
+                <a href="/portfolio">Portfólio</a>
+            </div>
+        </header>
+
+        {% block content %} {% endblock %}
+
+        <div id="links-footer" class="links">
+            <a href="https://github.com/Henrique1818" target="_blank">Github</a>
+            <a href="https://www.instagram.com/henrique18_89/" target="_blank">Instagram</a>
+            <a href="linkedin.com/in/luiz-henrique-23915916a/" target="_blank">LinkedIn</a>
+        </div>
+    </body>
+</html>

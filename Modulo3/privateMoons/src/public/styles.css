@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+:root {
+    --color-principal: #ffe05d;
+    --color-branca: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-principal);
+}
+
+.menu {
+    position: relative;
+    width: 100%;
+    padding: 32px;
+    background-color: var(--color-branca);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    transition: 800ms ease-in-out;
+}
+
+.menu.active {
+    transform: translateY(-80%);
+    transition: 800ms ease-in-out;
+}
+
+nav {
+    font-size: 22px;
+}
+
+.menu nav a {
+    color: #777;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+}
+
+.menu nav a.now {
+    font-weight: bold;
+    color: var(--color-principal);
+}
+
+.menu nav a:first-child {
+    margin-right: 12px;
+}
+
+.menu nav a::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: var(--color-principal);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -4px;
+}
+
+.menu nav a:hover::after {
+    content: '';
+    width: 100%;
+    background-color: var(--color-principal);
+    color: var(--color-principal);
+    transition: width 200ms ease-in-out;
+}
+
+.btn-toggle {
+    position: absolute;
+    right: 0;
+    bottom: -12px;
+    background-color: transparent;
+    cursor: pointer;
+    outline: 0;
+}
+
+.btn-toggle span {
+    font-size: 36px;
+    color: #777;
+}

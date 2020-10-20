@@ -1,11 +1,11 @@
-<center>
+<div align="center">
 
-![LaunchBase](https://user-images.githubusercontent.com/56804642/96529036-75582680-125a-11eb-9a6f-0889322afdd7.png)
+<img src="https://user-images.githubusercontent.com/56804642/96529036-75582680-125a-11eb-9a6f-0889322afdd7.png" width="200" alt="LaunchBase">
 
 ## Private Moons
 
 > this project was created from challenges posed by the bootcamp, in creating a website for private moons
-</center>
+</div>
 
 ---
 

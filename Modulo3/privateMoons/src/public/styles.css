@@ -97,4 +97,58 @@ nav {
     margin: 24px auto;
     display: grid;
     grid-template-columns: 40% 60%;
+    animation: left 400ms ease-out;
+    box-shadow: 2px 4px 12px -2px rgba(0, 0, 0, 0.603);
+}
+
+@keyframes left {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(15px);
+    }
+}
+
+.details {
+    padding: 28px;
+}
+
+.details .items {
+    padding: 8px 0;
+}
+
+
+.details h3,
+.details .items div:first-child {
+    color: #777;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.details h3 {
+    font-size: 18px;
+    color: var(--color-principal);
+    border: none;
+}
+
+.details .items div:nth-child(2) {
+    color: #333;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: normal;
+    margin-top: 2px;
+}
+
+.details .items span {
+    display: inline-block;
+    margin-left: 8px;
+    background-color: var(--color-principal);
+    color: #777;
+    padding: 8px 12px;
+    border-radius: 12px;
 }

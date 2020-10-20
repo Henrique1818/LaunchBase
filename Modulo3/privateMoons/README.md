@@ -1,11 +1,10 @@
 <center>
 
-![Project Image](project-image-url)
+![LaunchBase](https://user-images.githubusercontent.com/56804642/96529036-75582680-125a-11eb-9a6f-0889322afdd7.png)
 
-## Project Name
+## Private Moons
 
-> previous project description
-
+> this project was created from challenges posed by the bootcamp, in creating a website for private moons
 </center>
 
 ---

@@ -85,3 +85,16 @@ nav {
     font-size: 36px;
     color: #777;
 }
+
+/* Cards */
+
+.card {
+    width: 900px;
+    min-height: 500px;
+    background-color: var(--color-branca);
+    border-radius: 4px;
+
+    margin: 24px auto;
+    display: grid;
+    grid-template-columns: 40% 60%;
+}

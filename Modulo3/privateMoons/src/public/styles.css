@@ -72,6 +72,11 @@ nav {
     transition: width 200ms ease-in-out;
 }
 
+.menu nav a:hover {
+    color: var(--color-principal);
+    transition: width 200ms ease-in-out;
+}
+
 .btn-toggle {
     position: absolute;
     right: 0;

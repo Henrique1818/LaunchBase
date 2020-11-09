@@ -1,0 +1,24 @@
+{
+  "teacher": [
+    {
+      "id": 1,
+      "avatar_url": "https://images.unsplash.com/photo-1535533190416-534a491a6ac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "name": "henrique",
+      "birth": 939600000000,
+      "education_level": "doctorate",
+      "class_type": "EAD",
+      "occupation": "Analista de sistema",
+      "created_at": 1604961304808
+    },
+    {
+      "id": 2,
+      "avatar_url": "https://images.unsplash.com/photo-1535533190416-534a491a6ac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "name": "gabriela",
+      "birth": 760752000000,
+      "education_level": "masters",
+      "class_type": "Presential",
+      "occupation": "Enfermagem",
+      "created_at": 1604961346400
+    }
+  ]
+}

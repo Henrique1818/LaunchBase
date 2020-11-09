@@ -157,3 +157,37 @@ nav {
     padding: 8px 12px;
     border-radius: 12px;
 }
+
+/* Create */
+
+.details .items input, select {
+    width: 80%;
+    height: 32px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    padding: 0 12px;
+    outline: 0px;
+    font-size: 16px;
+    color: #777;
+}
+
+.details .items select {
+    background: none;
+}
+
+.details .items input[type="radio"] {
+    width: auto;
+    height: auto;
+}
+
+button[type="submit"] {
+    margin-top: 12px;
+    color: var(--color-branca);
+    background: var(--color-principal);
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}

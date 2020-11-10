@@ -28,12 +28,18 @@ module.exports = {
         });
 
         fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
-            if (err) return res.send('Write file error!')
-            
-            return res.redirect("/instructors");
+            if (err) return res.send('Write file error!') 
         });
 
-        
-        // return res.send(req.body)
+        return res.redirect("/instructors");
+    },
+    show(req, res) {
+        const { id } = req.params;
+
+        const foundInstructor = data.instructors.find(instructor => instructor.id == id);
+
+        if(!foundInstructor) return res.send('Instructor not found!');
+
+        return res.send(foundInstructor)
     }
 }

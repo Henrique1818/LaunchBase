@@ -40,6 +40,13 @@ module.exports = {
 
         if(!foundInstructor) return res.send('Instructor not found!');
 
-        return res.render('instructor/show.njk', { instructor: foundInstructor });
+        const instructor = {
+            ...foundInstructor,
+            age: "",
+            services: foundInstructor.services.split(","),
+            created_at: ""
+        }
+
+        return res.render('instructor/show.njk', { instructor });
     }
 }

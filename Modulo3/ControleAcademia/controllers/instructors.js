@@ -40,6 +40,6 @@ module.exports = {
 
         if(!foundInstructor) return res.send('Instructor not found!');
 
-        return res.send(foundInstructor)
+        return res.render('instructor/show.njk', { instructor: foundInstructor });
     }
 }

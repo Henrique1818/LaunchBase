@@ -49,5 +49,14 @@ module.exports = {
         }
             
         return res.render('instructor/show.njk', { instructor });
+    },
+    edit(req, res) {
+        const { id } = req.params;
+
+        const foundInstructor = data.instructors.find(instructor => instructor.id == id);
+
+        if(!foundInstructor) return res.send('Instructor not found!');
+
+        return res.render('instructor/edit', {instructor: foundInstructor})
     }
 }

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const data = require('../data.json');
-const { age } = require('../utils/date');
+const { age, date } = require('../utils/date');
 
 module.exports = {
     create(req, res) {
@@ -45,7 +45,7 @@ module.exports = {
             ...foundInstructor,
             age: age(foundInstructor.birth),
             services: foundInstructor.services.split(","),
-            created_at: Intl.DateTimeFormat('en-GB').format(foundInstructor.created_at)
+            created_at: Intl.DateTimeFormat('pt-BR').format(foundInstructor.created_at)
         }
             
         return res.render('instructor/show.njk', { instructor });
@@ -57,6 +57,12 @@ module.exports = {
 
         if(!foundInstructor) return res.send('Instructor not found!');
 
-        return res.render('instructor/edit', {instructor: foundInstructor})
+        const instructor = {
+            ...foundInstructor,
+            birth: date(foundInstructor.birth),
+            services: foundInstructor.services.split(",")
+        }
+
+        return res.render('instructor/edit', { instructor })
     }
 }

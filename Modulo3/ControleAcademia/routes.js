@@ -15,6 +15,8 @@ routes.get('/instructors/create', (req, res) => {
     return res.render('instructor/create')
 });
 
+routes.get('/instructors/:id/edit', instructors.edit);
+
 routes.get('/instructors/:id', instructors.show);
 
 routes.post('/instructors', instructors.create);

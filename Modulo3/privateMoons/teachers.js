@@ -30,8 +30,16 @@ module.exports = {
             if(err) {
                 return res.send('Write file error!');
             }
-
-            return res.redirect('/teachers');
         });
+        return res.redirect('/teachers');
+    },
+    show(req, res) {
+        const { id } = req.params;
+
+        const foundTeacher = data.teacher.find(teacher => teacher.id == id);
+
+        if(!foundTeacher) return res.send('Teacher not found');
+
+        return res.render('teachers/show.njk', { teacher: foundTeacher });
     }
 }

@@ -117,11 +117,12 @@ nav {
 }
 
 .details {
-    padding: 28px;
+    padding: 18px;
 }
 
 .details .items {
     padding: 8px 0;
+    margin-top: 5px;
 }
 
 
@@ -132,7 +133,8 @@ nav {
     font-size: 14px;
     line-height: 24px;
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    padding-top: 8px;
 }
 
 .details h3 {

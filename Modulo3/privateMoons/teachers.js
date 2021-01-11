@@ -1,5 +1,6 @@
 const fs = require('fs');
 const data = require('./data.json');
+const { age } = require('./utils');
 
 module.exports = {
     create(req, res) {
@@ -35,11 +36,17 @@ module.exports = {
     },
     show(req, res) {
         const { id } = req.params;
+        const foundTeacher = data.teacher.find(teacher => { return teacher.id == id });
 
-        const foundTeacher = data.teacher.find(teacher => teacher.id == id);
+        if(!foundTeacher) return res.send('Teacher not found!!');
 
-        if(!foundTeacher) return res.send('Teacher not found');
+        const teachers = {
+            ...foundTeacher,
+            birth: age(foundTeacher.birth),
+        }
+        
+        console.log(teachers);
 
-        return res.render('teachers/show.njk', { teacher: foundTeacher });
+        return res.render('teachers/show.njk', { teacher: teachers });
     }
 }

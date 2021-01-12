@@ -30,13 +30,15 @@
 
             <div class="items">
                 <div>Tipo de aula</div>
-                <div>{{teacher.class_type}}</div>
+                <div>{{ "Presencial" if teacher.class_type === "Presential" else "À distância" }}</div>
             </div>
 
             <div class="items">
                 <div>Acompanhamento</div>
                 <div>
-                    <span>{{teacher.ocuppation}}</span>
+                    {% for occupation in teacher.occupation %}
+                        <span>{{occupation}}</span>
+                    {% endfor %}
                 </div>
             </div>
             <div class="items">

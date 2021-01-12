@@ -45,6 +45,7 @@ module.exports = {
             birth: age(foundTeacher.birth),
             education_level: graduation(foundTeacher.education_level),
             occupation: foundTeacher.occupation.split(', '),
+            created_at: Intl.DateTimeFormat('pt-BR').format(foundTeacher.created_at)
         }
         
         console.log(teachers);

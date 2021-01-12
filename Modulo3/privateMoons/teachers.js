@@ -1,6 +1,6 @@
 const fs = require('fs');
 const data = require('./data.json');
-const { age } = require('./utils');
+const { age, graduation } = require('./utils');
 
 module.exports = {
     create(req, res) {
@@ -43,6 +43,8 @@ module.exports = {
         const teachers = {
             ...foundTeacher,
             birth: age(foundTeacher.birth),
+            education_level: graduation(foundTeacher.education_level),
+            occupation: foundTeacher.occupation.split(', '),
         }
         
         console.log(teachers);

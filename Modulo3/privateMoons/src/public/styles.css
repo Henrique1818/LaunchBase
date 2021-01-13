@@ -182,7 +182,8 @@ nav {
     height: auto;
 }
 
-button[type="submit"] {
+button[type="submit"],
+a.btn-edit {
     margin-top: 12px;
     color: var(--color-branca);
     background: var(--color-principal);
@@ -192,4 +193,14 @@ button[type="submit"] {
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
+}
+
+a.btn-edit {
+    display: block;
+    text-decoration: none;
+    padding: 8px 0;
+    height: auto;
+    font-size: 18px;
+    line-height: 24px;
+    box-sizing: border-box;
 }

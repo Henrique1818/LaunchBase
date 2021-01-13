@@ -15,6 +15,7 @@ routes.get('/teachers/create', (req, res) => {
 routes.get('/teachers/show/:id', teachers.show);
 routes.post('/teachers', teachers.create);
 
+routes.get('/teachers/edit/:id', teachers.edit);
 
 routes.get('/students', (req, res) => {
     return res.send('Page Students');

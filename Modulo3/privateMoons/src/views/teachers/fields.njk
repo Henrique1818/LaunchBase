@@ -1,16 +1,16 @@
 <div class="items">
     <div>Avatar url</div>
-    <input type="url" name="avatar_url" placeholder="Ex: http://" value={{teacher.avatar_url}}>
+    <input type="url" name="avatar_url" placeholder="Ex: http://" value="{{teacher.avatar_url}}">
 </div>
 
 <div class="items">
     <div>Nome</div>
-    <input type="text" name="name" placeholder="Nome do Professor(a)" value={{teacher.name}}>
+    <input type="text" name="name" placeholder="Nome do Professor(a)" value="{{teacher.name}}">
 </div>
 
 <div class="items">
     <div>Data de nascimento</div>
-    <input type="date" name="birth" value={{teacher.birth}}>
+    <input type="date" name="birth" value="{{teacher.birth}}">
 </div>
 
 <div class="items">
@@ -76,6 +76,7 @@
     <input 
         type="text" name="occupation"
         placeholder="Separe os serviços prestados por vírgula"
+        value="{{teacher.occupation}}"
     >
 </div>
 

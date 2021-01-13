@@ -3,7 +3,7 @@
     {
       "id": 1,
       "avatar_url": "https://images.unsplash.com/photo-1535533190416-534a491a6ac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-      "name": "henrique",
+      "name": "Henrique de Souza",
       "birth": 939600000000,
       "education_level": "doctorate",
       "class_type": "EAD",
@@ -13,7 +13,7 @@
     {
       "id": 2,
       "avatar_url": "https://images.unsplash.com/photo-1535533190416-534a491a6ac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-      "name": "gabriela",
+      "name": "Gabriela Araujo",
       "birth": 760752000000,
       "education_level": "masters",
       "class_type": "Presential",
@@ -23,11 +23,11 @@
     {
       "id": 3,
       "avatar_url": "https://images.unsplash.com/photo-1543975200-8e313fb04fc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      "name": "helen",
+      "name": "Helen Silva",
       "birth": 976579200000,
       "education_level": "ESC",
       "class_type": "EAD",
-      "occupation": "Analista de sistema",
+      "occupation": "Portugues, Geografia, História",
       "created_at": 1606868714213
     }
   ]

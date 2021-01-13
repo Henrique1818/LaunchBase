@@ -47,9 +47,17 @@ module.exports = {
             occupation: foundTeacher.occupation.split(', '),
             created_at: Intl.DateTimeFormat('pt-BR').format(foundTeacher.created_at)
         }
-        
-        console.log(teachers);
 
         return res.render('teachers/show.njk', { teacher: teachers });
+    },
+    edit(req, res){
+        const { id } = req.params;
+        const foundTeacher = data.teacher.find(teacher => teacher.id == id);
+
+        if(!foundTeacher) return res.send('Teacher not found!!');
+
+        console.log(foundTeacher)
+
+        return res.render('teachers/edit.njk', { teacher: foundTeacher});
     }
 }

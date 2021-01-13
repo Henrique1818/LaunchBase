@@ -1,6 +1,6 @@
 const fs = require('fs');
 const data = require('./data.json');
-const { age, graduation } = require('./utils');
+const { age, graduation, date } = require('./utils');
 
 module.exports = {
     create(req, res) {
@@ -56,8 +56,12 @@ module.exports = {
 
         if(!foundTeacher) return res.send('Teacher not found!!');
 
-        console.log(foundTeacher)
+        const teacher = {
+            ...foundTeacher,
+            birth: date(foundTeacher.birth),
+            occupation: foundTeacher.occupation.split(",")
+        };
 
-        return res.render('teachers/edit.njk', { teacher: foundTeacher});
+        return res.render('teachers/edit.njk', { teacher });
     }
 }

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const data = require('../data.json');
-const { age, date } = require('../utils/date');
+const { age, date, ptBR } = require('../utils/date');
 
 module.exports = {
     create(req, res) {
@@ -45,7 +45,7 @@ module.exports = {
             ...foundInstructor,
             age: age(foundInstructor.birth),
             services: foundInstructor.services.split(","),
-            created_at: Intl.DateTimeFormat('pt-BR').format(foundInstructor.created_at)
+            created_at: ptBR(foundInstructor.created_at)
         }
             
         return res.render('instructor/show.njk', { instructor });
@@ -70,7 +70,7 @@ module.exports = {
         let index = 0;
 
         const foundInstructor = data.instructors.find((instructor, foundIndex) => {
-            if(id == instructor) {
+            if(id == instructor.id) {
                 index = foundIndex;
 
                 return true;

@@ -32,7 +32,7 @@ module.exports = {
                 return res.send('Write file error!');
             }
         });
-        return res.redirect('/teachers');
+        return res.render('teachers');
     },
     show(req, res) {
         const { id } = req.params;
@@ -89,6 +89,21 @@ module.exports = {
 
         fs.writeFile('data.json', JSON.stringify(data, null, 2), err => {
             if(err) return res.send('Write file error!!');
+
+            return res.redirect(`teachers/${id}/show`);
+        });
+    },
+    delete(req, res) {
+        const { id } = req.body;
+
+        const filteredTeacher = data.teacher.filter(teacher => {
+            return teacher.id != id;
+        });
+
+        data.teacher = filteredTeacher;
+
+        fs.writeFile('data.json', JSON.stringify(data, null, 2), err => {
+            if(err) return res.send('Write file error');
 
             return res.redirect('teachers');
         });

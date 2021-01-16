@@ -9,11 +9,6 @@
             <h3>Details</h3>
 
             <div class="items">
-                <div>Avatar Url</div>
-                <div>{{teacher.avatar_url}}</div>
-            </div>
-
-            <div class="items">
                 <div>Teacher</div>
                 <div>{{teacher.name}}</div>
             </div>
@@ -46,7 +41,7 @@
                 <div>{{teacher.created_at}}</div>
             </div>
 
-            <a href="/teachers/edit/{{teacher.id}}" class="btn-edit">Editar</a>
+            <a href="/teachers/{{teacher.id}}/edit" class="btn-edit">Editar</a>
         </section>
     </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 const express = require('express');
-const teachers = require('../teachers');
+const teachers = require('./controllers/teachers.js');
 
 const routes = express.Router();
 
@@ -12,10 +12,10 @@ routes.get('/teachers', (req, res) => {
 routes.get('/teachers/create', (req, res) => {
     return res.render('teachers/create');
 });
-routes.get('/teachers/show/:id', teachers.show);
+routes.get('/teachers/:id/show', teachers.show);
+routes.get('/teachers/:id/edit', teachers.edit);
 routes.post('/teachers', teachers.create);
-
-routes.get('/teachers/edit/:id', teachers.edit);
+routes.put('/teachers', teachers.update);
 
 routes.get('/students', (req, res) => {
     return res.send('Page Students');

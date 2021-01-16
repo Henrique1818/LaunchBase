@@ -3,7 +3,7 @@
     {
       "id": 1,
       "avatar_url": "https://images.unsplash.com/photo-1543975200-8e313fb04fc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      "name": "Luiz Henrique",
+      "name": "Henrique",
       "birth": 950832000000,
       "education_level": "masters",
       "class_type": "Presential",
@@ -18,16 +18,6 @@
       "class_type": "Presential",
       "occupation": "Enfermagem, Auxiliar de Enfermagem, Doutora",
       "created_at": 1604961346400
-    },
-    {
-      "id": 3,
-      "avatar_url": "https://images.unsplash.com/photo-1543975200-8e313fb04fc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      "name": "Helen Silva",
-      "birth": 523411200000,
-      "education_level": "doctorate",
-      "class_type": "EAD",
-      "occupation": "História",
-      "created_at": 1606868714213
     }
   ]
 }

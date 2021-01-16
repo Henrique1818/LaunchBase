@@ -10,12 +10,12 @@
       "created_at": 1604869401232
     },
     {
-      "id": 2,
+      "id": "2",
       "avatar_url": "https://images.unsplash.com/photo-1543975200-8e313fb04fc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      "name": "henrique",
-      "birth": 916012800000,
+      "name": "Luiz Henrique",
+      "birth": 950832000000,
       "gender": "M",
-      "services": "crossfit, musculação, natação",
+      "services": "crossfit, natação",
       "created_at": 1604869466053
     },
     {

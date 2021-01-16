@@ -61,8 +61,36 @@ module.exports = {
             ...foundInstructor,
             birth: date(foundInstructor.birth),
             services: foundInstructor.services.split(",")
-        }
+        };
 
-        return res.render('instructor/edit', { instructor })
+        return res.render('instructor/edit', { instructor });
+    },
+    put(req, res) {
+        const { id } = req.body;
+        let index = 0;
+
+        const foundInstructor = data.instructors.find((instructor, foundIndex) => {
+            if(id == instructor) {
+                index = foundIndex;
+
+                return true;
+            };
+        });
+
+        if(!foundInstructor) return res.send('Instructor not found!');
+
+        const instructor = {
+            ...foundInstructor,
+            ...req.body,
+            birth: Date.parse(req.body.birth)
+        };
+
+        data.instructors[index] = instructor;
+
+        fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+            if(err) return res.send('Write error!')
+
+            return res.redirect(`/instructors/${id}`);
+        });
     }
 }

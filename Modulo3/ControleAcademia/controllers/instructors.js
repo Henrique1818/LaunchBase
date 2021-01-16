@@ -92,5 +92,20 @@ module.exports = {
 
             return res.redirect(`/instructors/${id}`);
         });
+    },
+    delete(req, res) {
+        const { id } = req.params;
+
+        const filteredInstructors = data.instructors.filter(instructor => {
+            return instructor.id != id;
+        });
+
+        data.instructors = filteredInstructors;
+
+        fs.writeFile('data.json', JSON.stringify(data, null, 2), err => {
+            if(err) return res.send('Write file error!');
+
+            return res.redirect('/instructors');
+        });
     }
 }

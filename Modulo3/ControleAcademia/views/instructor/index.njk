@@ -1,17 +1,21 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-    <div class="cards">
-        <table>
+    <div class="cards table-container">
+        <table width="100%">
             <thead>
-                <th>Instrutores</th>
-                <th>Atendimentos</th>
+               <tr>
+                    <th>Instrutores</th>
+                    <th>Atendimentos</th>
+                    <th>Ação</th>
+               </tr>
             </thead>
             <tbody>
                 {%for instructor in instructors %}
                     <tr>
                         <td>{{instructor.name}}</td>
-                        <th>{{instructor.services}}</th>
+                        <td>{{instructor.services}}</td>
+                        <td><a href="/instructors/{{instructor.id}}">Ver</a></td>
                     </tr>
                 {%endfor%}
             </tbody>

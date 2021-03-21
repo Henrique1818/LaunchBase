@@ -3,6 +3,9 @@ const data = require('../data.json');
 const { age, date, ptBR } = require('../utils/date');
 
 module.exports = {
+    index(req, res) {
+        return res.render('instructor/index', {instructors: data.instructors})
+    },
     create(req, res) {
         let keys = Object.keys(req.body);
     

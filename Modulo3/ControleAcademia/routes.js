@@ -6,9 +6,7 @@ const routes = express.Router();
 routes.get('/', (req, res) => {
     return res.redirect('instructors')
 });
-routes.get('/instructors', (req, res) => {
-    return res.render('instructor/index')
-});
+routes.get('/instructors', instructors.index);
 routes.get('/instructors/create', (req, res) => {
     return res.render('instructor/create')
 });

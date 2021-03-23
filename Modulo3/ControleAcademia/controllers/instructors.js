@@ -3,10 +3,10 @@ const data = require('../data.json');
 const { age, date, ptBR } = require('../utils/date');
 
 module.exports = {
-    index(req, res) {
+    async index(req, res) {
         return res.render('instructor/index', {instructors: data.instructors})
     },
-    create(req, res) {
+    async create(req, res) {
         let keys = Object.keys(req.body);
     
         for(key of keys) {
@@ -21,7 +21,7 @@ module.exports = {
         const id = Number(data.instructors.length + 1);
         const created_at = Date.now();
 
-        data.instructors.push({
+        await data.instructors.push({
             id,
             avatar_url,
             name,
@@ -37,10 +37,10 @@ module.exports = {
 
         return res.redirect("/instructors");
     },
-    show(req, res) {
+    async show(req, res) {
         const { id } = req.params;
 
-        const foundInstructor = data.instructors.find(instructor => instructor.id == id);
+        const foundInstructor = await data.instructors.find(instructor => instructor.id == id);
 
         if(!foundInstructor) return res.send('Instructor not found!');
         
@@ -53,10 +53,10 @@ module.exports = {
             
         return res.render('instructor/show.njk', { instructor });
     },
-    edit(req, res) {
+    async edit(req, res) {
         const { id } = req.params;
 
-        const foundInstructor = data.instructors.find(instructor => instructor.id == id);
+        const foundInstructor = await data.instructors.find(instructor => instructor.id == id);
 
         if(!foundInstructor) return res.send('Instructor not found!');
 
@@ -68,11 +68,11 @@ module.exports = {
 
         return res.render('instructor/edit', { instructor });
     },
-    put(req, res) {
+    async put(req, res) {
         const { id } = req.body;
         let index = 0;
 
-        const foundInstructor = data.instructors.find((instructor, foundIndex) => {
+        const foundInstructor = await data.instructors.find((instructor, foundIndex) => {
             if(id == instructor.id) {
                 index = foundIndex;
 
@@ -85,21 +85,21 @@ module.exports = {
         const instructor = {
             ...foundInstructor,
             ...req.body,
-            birth: Date.parse(req.body.birth)
+            birth: Date.parse(req.body.birth),
+            id: Number(req.body.id)
         };
 
         data.instructors[index] = instructor;
 
-        fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+        await fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
             if(err) return res.send('Write error!')
-
-            return res.redirect(`/instructors/${id}`);
+            res.redirect(`/instructors/${id}`);
         });
     },
-    delete(req, res) {
+    async delete(req, res) {
         const { id } = req.params;
 
-        const filteredInstructors = data.instructors.filter(instructor => {
+        const filteredInstructors = await data.instructors.filter(instructor => {
             return instructor.id != id;
         });
 

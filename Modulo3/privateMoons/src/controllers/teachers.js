@@ -3,6 +3,19 @@ const data = require('../../data.json');
 const { age, graduation, date } = require('../utils/dates.js');
 
 module.exports = {
+    index(req, res) {
+        let teachers = data.teacher.map(teacher => {
+
+            const newTeacher = {
+                ...teacher,
+                occupation: teacher.occupation.split(',')
+            }
+
+            return newTeacher;
+        });
+        
+        return res.render('teachers/index', {teachers});
+    },
     create(req, res) {
         let { avatar_url, name, birth, education_level, class_type, occupation } = req.body;
 

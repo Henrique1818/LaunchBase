@@ -1,44 +1,32 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-    <div class="card">
-        <section class="avatar_url" style="background: url(https://source.unsplash.com/collection/2467520/500x500) no-repeat center center / cover; border-radius: 4px 0 0 4px">
-        </section>
-        <section class="details">
+    <div class="card table-container">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Professores</th>
+                    <th>Ocupações</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
 
-            <h3>Details</h3>
-
-            <div class="items">
-                <div>Teacher</div>
-                <div>Anne Melo</div>
-            </div>
-
-            <div class="items">
-                <div>Idade</div>
-                <div>27 anos</div>
-            </div>
-
-            <div class="items">
-                <div>Grau de escolaridade</div>
-                <div>Doutorado</div>
-            </div>
-
-            <div class="items">
-                <div>Tipo de aula</div>
-                <div>À distância</div>
-            </div>
-
-            <div class="items">
-                <div>Acompanhamento</div>
-                <div>
-                    <span>Matemática</span>
-                    <span>Fisica</span>
-                </div>
-            </div>
-            <div class="items">
-                <div>Desde</div>
-                <div>12/04/2019</div>
-            </div>
-        </section>
+            <tbody>
+                {%for teacher in teachers%}
+                    <tr>
+                        <td>
+                            <span style="background-image: url({{teacher.avatar_url}})"></span>
+                            {{teacher.name}}
+                        </td>
+                        <td class="occupations">
+                            {%for occupation in teacher.occupation%}
+                                <span>{{occupation}}</span>
+                            {%endfor%}
+                        </td>
+                        <td><a href="/teachers/{{teacher.id}}/show">Ver</a></td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

@@ -4,7 +4,15 @@ const { age, date, ptBR } = require('../utils/date');
 
 module.exports = {
     async index(req, res) {
-        return res.render('instructor/index', {instructors: data.instructors})
+        const instructors = data.instructors.map(instructor => {
+            const newInstructor = {
+                ...instructor,
+                services: instructor.services.split(',')
+            }
+
+            return newInstructor;
+        })
+        return res.render('instructor/index', {instructors})
     },
     async create(req, res) {
         let keys = Object.keys(req.body);

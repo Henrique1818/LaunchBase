@@ -18,29 +18,25 @@ module.exports = {
         let keys = Object.keys(req.body);
     
         for(key of keys) {
-            if (req.body[key] == "") {
-                return res.send('Please, fill all fields!')
-            }
+            if (req.body[key] == "") return res.send('Please, fill all fields!');
         }
 
-        let { avatar_url, name, birth, gender, services } = req.body;
+        birth = Date.parse(req.body.birth);
+        
+        let id = 1; 
+        const lastMember = data.members[data.members.length -1];
 
-        birth = Date.parse(birth);
-        const id = Number(data.members.length + 1);
-        const created_at = Date.now();
+        if(lastMember) return id = lastMember.id ++;
+
 
         await data.members.push({
+            ...req.body,
             id,
-            avatar_url,
-            name,
-            birth,
-            gender,
-            services,
-            created_at
+            birth
         });
 
         fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
-            if (err) return res.send('Write file error!') 
+            if (err) return res.send('Write file error!');
         });
 
         return res.redirect("/members");

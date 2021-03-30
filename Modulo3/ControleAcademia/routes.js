@@ -19,7 +19,7 @@ routes.delete('/instructors', instructors.delete);
 
 routes.get('/members', members.index);
 routes.get('/members/create', (req, res) => {
-    return res.render('instructor/create')
+    return res.render('member/create')
 });
 routes.get('/members/:id', members.show);
 routes.get('/members/:id/edit', members.edit);

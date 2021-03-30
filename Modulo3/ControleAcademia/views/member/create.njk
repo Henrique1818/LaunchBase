@@ -1,14 +1,14 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-    <form class="cards" method="POST" action="/instructors">
+    <form class="cards" method="POST" action="/members">
         <section class="avatar_url" style= "border-radius: 12px 0 0 12px; background: url(https://source.unsplash.com/collection/11466768/500x500) no-repeat center center / cover">
         </section>
         <section class="details">
 
-            <h3>New Instructor</h3>
+            <h3>New Member</h3>
 
-            {% include 'instructor/fields.njk' %}
+            {% include 'member/fields.njk' %}
             
         </section>
     </form>

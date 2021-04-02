@@ -1,9 +1,9 @@
 const fs = require('fs');
 const data = require('../data.json');
-const { age, date, ptBR } = require('../utils/date');
+const { date} = require('../utils/date');
 
 module.exports = {
-    async index(req, res) {
+    index(req, res) {
         // const members = data.members.map(member => {
         //     const newmember = {
         //         ...member,
@@ -14,7 +14,7 @@ module.exports = {
         // })
         return res.render('member/index')
     },
-    async create(req, res) {
+    create(req, res) {
         let keys = Object.keys(req.body);
     
         for(key of keys) {
@@ -29,7 +29,7 @@ module.exports = {
         if(lastMember) return id = lastMember.id ++;
 
 
-        await data.members.push({
+        data.members.push({
             ...req.body,
             id,
             birth
@@ -37,46 +37,76 @@ module.exports = {
 
         fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
             if (err) return res.send('Write file error!');
+            
+            return res.redirect(`/members/${id}`);
         });
 
-        return res.redirect("/members");
     },
-    async show(req, res) {
+    show(req, res) {
         const { id } = req.params;
 
-        const foundmember = await data.members.find(member => member.id == id);
+        const foundMember = data.members.find(member => member.id == id);
 
-        if(!foundmember) return res.send('member not found!');
+        if(!foundMember) return res.send('member not found!');
+
+        let typeBlood = [];
+
+        switch(foundMember.blood) {
+            case 'A1':
+                typeBlood.push('A+');
+                break;
+            case 'A0':
+                typeBlood.push('A-');
+                break;
+            case 'B1':
+                typeBlood.push('B+');
+                break;
+            case 'B0':
+                typeBlood.push('B-');
+                break;
+            case 'AB1':
+                typeBlood.push('AB+');
+                break;
+            case 'AB0':
+                typeBlood.push('AB-');
+                break;
+            case 'O1':
+                typeBlood.push('O+');
+                break;
+            case 'O0':
+                typeBlood.push('O-');
+                break;
+        }
         
         const member = {
-            ...foundmember,
-            age: age(foundmember.birth),
-            services: foundmember.services.split(","),
-            created_at: ptBR(foundmember.created_at)
+            ...foundMember,
+            birth: date(foundMember.birth).birthDay,
+            blood: typeBlood
         }
             
         return res.render('member/show.njk', { member });
     },
-    async edit(req, res) {
+    edit(req, res) {
         const { id } = req.params;
 
-        const foundmember = await data.members.find(member => member.id == id);
+        const foundMember = data.members.find(member => member.id == id);
 
-        if(!foundmember) return res.send('member not found!');
+        if(!foundMember) return res.send('member not found!');
 
         const member = {
-            ...foundmember,
-            birth: date(foundmember.birth),
-            services: foundmember.services.split(",")
+            ...foundMember,
+            birth: date(foundMember.birth).iso
         };
+
+        console.log(member)
 
         return res.render('member/edit', { member });
     },
-    async put(req, res) {
+    put(req, res) {
         const { id } = req.body;
         let index = 0;
 
-        const foundmember = await data.members.find((member, foundIndex) => {
+        const foundMember = data.members.find((member, foundIndex) => {
             if(id == member.id) {
                 index = foundIndex;
 
@@ -84,10 +114,10 @@ module.exports = {
             };
         });
 
-        if(!foundmember) return res.send('member not found!');
+        if(!foundMember) return res.send('member not found!');
 
         const member = {
-            ...foundmember,
+            ...foundMember,
             ...req.body,
             birth: Date.parse(req.body.birth),
             id: Number(req.body.id)
@@ -95,15 +125,16 @@ module.exports = {
 
         data.members[index] = member;
 
-        await fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
-            if(err) return res.send('Write error!')
+        fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+            if(err) return res.send('Write error!');
+            
             res.redirect(`/members/${id}`);
         });
     },
-    async delete(req, res) {
+    delete(req, res) {
         const { id } = req.params;
 
-        const filteredmembers = await data.members.filter(member => {
+        const filteredmembers = data.members.filter(member => {
             return member.id != id;
         });
 

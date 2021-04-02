@@ -169,6 +169,15 @@ a.button {
   font-size: 16px;
 }
 
+.item select {
+  width: 40%;
+  padding: 8px 3px;
+  background-color: var(--color-principal);
+  color: #ffff;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
 a.button {
   display: block;
   box-sizing: border-box;

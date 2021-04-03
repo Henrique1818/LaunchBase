@@ -6,8 +6,10 @@
         <table width="100%">
             <thead>
                <tr>
-                    <th>Instrutores</th>
-                    <th>Atendimentos</th>
+                    <th>Membro</th>
+                    <th>E-mail</th>
+                    <th>Peso</th>
+                    <th>Altura</th>
                     <th>Ação</th>
                </tr>
             </thead>
@@ -18,11 +20,9 @@
                             <span style="background-image: url({{member.avatar_url}})"></span>
                             {{member.name}}
                         </td>
-                        <td>
-                            {%for services in member.services %}
-                                <span class="services">{{services}}</span>
-                            {%endfor%}
-                        </td>
+                        <td>{{member.email}}</td>
+                        <td>{{member.weight}}kg</td>
+                        <td>{{member.height}}cm</td>
                         <td><a href="/members/{{member.id}}">Ver</a></td>
                     </tr>
                 {%endfor%}

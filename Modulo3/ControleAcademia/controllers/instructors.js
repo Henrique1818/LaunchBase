@@ -106,7 +106,7 @@ module.exports = {
         });
     },
     delete(req, res) {
-        const { id } = req.params;
+        const { id } = req.body;
 
         const filteredInstructors = data.instructors.filter(instructor => {
             return instructor.id != id;

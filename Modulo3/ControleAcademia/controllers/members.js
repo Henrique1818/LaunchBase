@@ -4,43 +4,41 @@ const { date} = require('../utils/date');
 
 module.exports = {
     index(req, res) {
-        // const members = data.members.map(member => {
-        //     const newmember = {
-        //         ...member,
-        //         services: member.services.split(',')
-        //     }
-
-        //     return newmember;
-        // })
-        return res.render('member/index')
+        const members = data.members;
+        return res.render('member/index', { members });
     },
-    create(req, res) {
-        let keys = Object.keys(req.body);
-    
-        for(key of keys) {
-            if (req.body[key] == "") return res.send('Please, fill all fields!');
+    create(req, res) { 
+        const keys = Object.keys(req.body);
+
+        for (const key of keys) {
+            if (req.body[key] === "") return res.send('Por favor, preencha todos os campos!')
+        }
+        const { avatar_url, name, email, birth, gender, blood, height, weight } = req.body
+
+        let id = 1;
+        let lastId = data.members[data.members.length - 1].id + 1;
+
+        id = lastId;
+
+        const member = {
+            id: Number(id),
+            avatar_url,
+            name,
+            email,
+            birth: Date.parse(birth),
+            gender,
+            blood,
+            height,
+            weight
         }
 
-        birth = Date.parse(req.body.birth);
+        data.members.push(member);
         
-        let id = 1; 
-        const lastMember = data.members[data.members.length -1];
-
-        if(lastMember) return id = lastMember.id ++;
-
-
-        data.members.push({
-            ...req.body,
-            id,
-            birth
+        fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {
+            if (err) return res.send("Erro na escrita do arquivo!")
+    
+            return res.redirect('/members')
         });
-
-        fs.writeFile('data.json', JSON.stringify(data, null, 2), function(err) {
-            if (err) return res.send('Write file error!');
-            
-            return res.redirect(`/members/${id}`);
-        });
-
     },
     show(req, res) {
         const { id } = req.params;
@@ -98,8 +96,6 @@ module.exports = {
             birth: date(foundMember.birth).iso
         };
 
-        console.log(member)
-
         return res.render('member/edit', { member });
     },
     put(req, res) {
@@ -128,22 +124,22 @@ module.exports = {
         fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
             if(err) return res.send('Write error!');
             
-            res.redirect(`/members/${id}`);
+            return res.redirect(`/members/${id}`);
         });
     },
     delete(req, res) {
-        const { id } = req.params;
+        const { id } = req.body
 
-        const filteredmembers = data.members.filter(member => {
-            return member.id != id;
-        });
+        const filteredMembers = data.members.filter(function (member, foundIndex) {
+            return member.id != id
+        })
 
-        data.members = filteredmembers;
+        data.members = filteredMembers
 
-        fs.writeFile('data.json', JSON.stringify(data, null, 2), err => {
-            if(err) return res.send('Write file error!');
+        fs.writeFile('data.json', JSON.stringify(data, null, 2), function (err) {
+            if (err) return res.send("Erro na escrita do arquivo!")
 
-            return res.redirect('/members');
-        });
+            return res.redirect('/members')
+    })
     }
 }

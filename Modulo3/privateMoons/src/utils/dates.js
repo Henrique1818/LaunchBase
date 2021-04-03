@@ -26,6 +26,30 @@ module.exports = {
         
         return education;
     },
+    grade(typeSchoolYear) {
+        let schoolYear = '';
+        
+        switch(typeSchoolYear) {
+            case 'ENF5':
+                return education = '5º ano do ensino fundamental'
+            case 'ENF6':
+                return education = '6º ano do ensino fundamental'
+            case 'ENF7':
+                return education = '7º ano do ensino fundamental'
+            case 'ENF8':
+                return education = '8º ano do ensino fundamental'
+            case 'ENF9':
+                return education = '9º ano do ensino fundamental'
+            case 'ENM1':
+                return education = '1º ano do ensino médio'
+            case 'ENM2':
+                return education = '2º ano do ensino médio'
+            case 'ENM3':
+                return education = '3º ano do ensino médio'
+        }
+
+        return schoolYear;
+    },
     date(timestamp) {
         const date = new Date(timestamp);
 
@@ -33,6 +57,12 @@ module.exports = {
         const month = `0${date.getUTCMonth() + 1}`.slice(-2);
         const day = `0${date.getUTCDate()}`.slice(-2);
 
-        return `${year}-${month}-${day}`;
+        return {
+            day,
+            month,
+            year, 
+            iso: `${year}-${month}-${day}`,
+            birthDay: `${day}/${month}`
+        }
     }
 }

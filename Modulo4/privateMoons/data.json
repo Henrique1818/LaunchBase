@@ -1,0 +1,52 @@
+{
+  "teacher": [
+    {
+      "id": 1,
+      "avatar_url": "https://images.unsplash.com/photo-1543975200-8e313fb04fc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      "name": "Henrique",
+      "birth": 950832000000,
+      "education_level": "masters",
+      "class_type": "Presential",
+      "occupation": "Engenharia de Software, Ciência da Computação"
+    },
+    {
+      "id": 2,
+      "avatar_url": "https://images.unsplash.com/photo-1535533190416-534a491a6ac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "name": "Gabriela Araujo",
+      "birth": 760752000000,
+      "education_level": "masters",
+      "class_type": "Presential",
+      "occupation": "Enfermagem, Auxiliar de Enfermagem, Doutora",
+      "created_at": 1604961346400
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "avatar_url": "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+      "name": "Teste",
+      "birth": 1076198400000,
+      "email": "test@teste.com",
+      "school_year": "ENM1",
+      "weekly_workload": "30"
+    },
+    {
+      "id": 2,
+      "avatar_url": "https://images.unsplash.com/photo-1535533190416-534a491a6ac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "name": "GGGGGG teste",
+      "birth": 1171929600000,
+      "email": "gtest@teste.com",
+      "school_year": "ENM2",
+      "weekly_workload": "40"
+    },
+    {
+      "id": 3,
+      "avatar_url": "https://images.unsplash.com/photo-1535533190416-534a491a6ac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "name": "Test 3",
+      "birth": 1202515200000,
+      "email": "test3@test.com",
+      "school_year": "ENF8",
+      "weekly_workload": "34"
+    }
+  ]
+}

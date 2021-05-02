@@ -1,5 +1,6 @@
 node_modules/
 
-package-lock.json
-
 .vscode
+.env
+
+package-lock.json

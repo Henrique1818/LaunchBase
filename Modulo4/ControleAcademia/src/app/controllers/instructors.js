@@ -3,17 +3,19 @@ const db = require('../../config/db');
 
 module.exports = {
     index(req, res) {
-        // const instructors = data.instructors.map(instructor => {
-        //     const newInstructor = {
-        //         ...instructor,
-        //         services: instructor.services.split(',')
-        //     }
+        db.query('SELECT * FROM instructors', (err, result) => {
+            if(err) throw res.status(500).json({'error': 'Database Error!'});
+            
+            const instructors = result.rows.map(instructor => {
+                return {
+                    ...instructor,
+                    services: instructor.services.split(',')
+                }
+            });
 
-        //     return newInstructor;
-        // })
-        // return res.render('instructor/index', {instructors})
+            return res.render('instructor/index', { instructors });
+        });
 
-        return res.render('instructor/index');
     },
     create(req, res) {
         let keys = Object.keys(req.body);

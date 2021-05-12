@@ -1,12 +1,10 @@
 const { age, date, ptBR } = require('../../lib/date');
-const db = require('../../config/db');
+const Instructor = require('../models/Instructor');
 
 module.exports = {
     index(req, res) {
-        db.query('SELECT * FROM instructors', (err, result) => {
-            if(err) throw res.status(500).json({'error': 'Database Error!'});
-            
-            const instructors = result.rows.map(instructor => {
+        Instructor.all((item) => {
+            const instructors = item.map(instructor => {
                 return {
                     ...instructor,
                     services: instructor.services.split(',')
@@ -15,7 +13,6 @@ module.exports = {
 
             return res.render('instructor/index', { instructors });
         });
-
     },
     create(req, res) {
         let keys = Object.keys(req.body);
@@ -26,31 +23,8 @@ module.exports = {
             }
         }
 
-        const query = `
-            INSERT INTO instructors(
-                name,
-                avatar_url,
-                birth,
-                gender,
-                services,
-                created_at
-            ) VALUES ($1, $2, $3, $4, $5, $6)
-            RETURNING id
-        `;
-        
-        const values = [
-            req.body.name,
-            req.body.avatar_url,
-            date(req.body.birth).iso,
-            req.body.gender,
-            req.body.services,
-            date(Date.now()).iso
-        ]
-
-        db.query(query, values, (err, result) => {
-            if(err) throw res.status(500).json({'error': 'Database Error!'});
-            
-            return res.redirect(`/instructors/${result.rows[0].id}`);
+        Instructor.create(req.body, (instructor) => {
+            return res.redirect(`/instructors/${instructor.id}`);
         });        
     },
     show(req, res) {

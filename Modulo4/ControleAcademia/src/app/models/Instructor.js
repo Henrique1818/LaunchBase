@@ -1,3 +1,4 @@
+const { date } = require('../../lib/date');
 const db = require('../../config/db');
 
 module.exports = {
@@ -34,6 +35,13 @@ module.exports = {
             if(err) throw res.status(500).json({'error': 'Database Error!'});
             
             callback(result.rows[0]);
+        });
+    },
+    findById(id, callback) {
+        db.query(`SELECT * FROM instructors WHERE id = $1`, [id], function(err, results) {
+            if(err) throw res.status(500).json({'error': 'Database Error!'});
+
+            callback(results.rows[0]);
         });
     }
 }

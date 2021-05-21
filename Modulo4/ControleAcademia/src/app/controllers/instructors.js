@@ -1,4 +1,4 @@
-const { age, date, ptBR } = require('../../lib/date');
+const { age, date } = require('../../lib/date');
 const Instructor = require('../models/Instructor');
 
 module.exports = {
@@ -42,6 +42,17 @@ module.exports = {
         // }
             
         // return res.render('instructor/show.njk', { instructor });
+
+        Instructor.findById(req.params.id, function(instructor) {
+            if(!instructor) return res.status(404).json({ error: 'Instructor not found!' });
+
+            instructor.age = age(instructor.birth);
+            instructor.services = instructor.services.split(',');
+
+            instructor.created_at = date(instructor.created_at).format;
+
+            return res.render('instructor/show.njk', { instructor })
+        });
     },
     edit(req, res) {
         // const { id } = req.params;

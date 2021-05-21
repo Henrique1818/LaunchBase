@@ -4,7 +4,7 @@ const db = require('../../config/db');
 module.exports = {
     all(callback) {
         db.query('SELECT * FROM instructors', (err, result) => {
-            if(err) throw res.status(500).json({'error': 'Database Error!'});
+            if(err) throw res.status(500).json({'error': `Database Error! ${err}`});
             
             callback(result.rows);            
         });
@@ -32,14 +32,14 @@ module.exports = {
         ]
 
         db.query(query, values, (err, result) => {
-            if(err) throw res.status(500).json({'error': 'Database Error!'});
+            if(err) throw res.status(500).json({'error': `Database Error! ${err}`});
             
             callback(result.rows[0]);
         });
     },
     findById(id, callback) {
         db.query(`SELECT * FROM instructors WHERE id = $1`, [id], function(err, results) {
-            if(err) throw res.status(500).json({'error': 'Database Error!'});
+            if(err) throw res.status(500).json({'error': `Database Error! ${err}`});
 
             callback(results.rows[0]);
         });
@@ -65,9 +65,16 @@ module.exports = {
         ];
 
         db.query(query, value, function(err, result) {
-            if(err) throw res.status(500).json({'error': 'Database Error!'});
+            if(err) throw res.status(500).json({'error': `Database Error! ${err}`});
 
             callback();
+        });
+    },
+    delete(id, callback) {
+        db.query('DELETE FROM instructors WHERE id = $1', [id], function(err, results) {
+            if(err) throw res.status(500).json({'error': `Database Error! ${err}`});
+
+            return callback();
         });
     }
 }

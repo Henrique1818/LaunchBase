@@ -24,25 +24,10 @@ module.exports = {
         }
 
         Instructor.create(req.body, (instructor) => {
-            return res.redirect(`/instructors/${instructor.id}`);
+            return res.status(201).redirect(`/instructors/${instructor.id}`);
         });        
     },
     show(req, res) {
-        // const { id } = req.params;
-
-        // const foundInstructor = data.instructors.find(instructor => instructor.id == id);
-
-        // if(!foundInstructor) return res.send('Instructor not found!');
-        
-        // const instructor = {
-        //     ...foundInstructor,
-        //     age: age(foundInstructor.birth),
-        //     services: foundInstructor.services.split(","),
-        //     created_at: ptBR(foundInstructor.created_at)
-        // }
-            
-        // return res.render('instructor/show.njk', { instructor });
-
         Instructor.findById(req.params.id, function(instructor) {
             if(!instructor) return res.status(404).json({ error: 'Instructor not found!' });
 
@@ -51,52 +36,30 @@ module.exports = {
 
             instructor.created_at = date(instructor.created_at).format;
 
-            return res.render('instructor/show.njk', { instructor })
+            return res.render('instructor/show', { instructor })
         });
     },
     edit(req, res) {
-        // const { id } = req.params;
+        Instructor.findById(req.params.id, function(instructor) {
+            if(!instructor) return res.status(404).json({ error: 'Instructor not found!' });
 
-        // const foundInstructor = data.instructors.find(instructor => instructor.id == id);
+            instructor.birth = date(instructor.birth).iso;
 
-        // if(!foundInstructor) return res.send('Instructor not found!');
-
-        // const instructor = {
-        //     ...foundInstructor,
-        //     birth: date(foundInstructor.birth).iso,
-        //     services: foundInstructor.services.split(",")
-        // };
-
-        // return res.render('instructor/edit', { instructor });
+            return res.render('instructor/edit', { instructor })
+        });
     },
     put(req, res) {
-        // const { id } = req.body;
-        // let index = 0;
+        let keys = Object.keys(req.body);
+    
+        for(key of keys) {
+            if (req.body[key] == "") {
+                return res.send('Please, fill all fields!');
+            }
+        }
 
-        // const foundInstructor = data.instructors.find((instructor, foundIndex) => {
-        //     if(id == instructor.id) {
-        //         index = foundIndex;
-
-        //         return true;
-        //     };
-        // });
-
-        // if(!foundInstructor) return res.send('Instructor not found!');
-
-        // const instructor = {
-        //     ...foundInstructor,
-        //     ...req.body,
-        //     birth: Date.parse(req.body.birth),
-        //     id: Number(req.body.id)
-        // };
-
-        // data.instructors[index] = instructor;
-
-        // fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
-        //     if(err) return res.send('Write error!')
-
-        //     res.redirect(`/instructors/${id}`);
-        // });
+        Instructor.update(req.body, function() {
+            return res.status(200).redirect(`/instructors/${req.body.id}`)
+        });
     },
     delete(req, res) {
         // const { id } = req.body;
